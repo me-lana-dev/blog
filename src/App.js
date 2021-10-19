@@ -5,7 +5,7 @@ import MyButton from "./components/UI/button/MyButton.jsx";
 import "./styles/App.css";
 
 function App() {
-  const [posts] = useState([
+  const [posts, setPosts] = useState([
     { id: 1, title: "Javascript", body: "Description of Javascript" },
     { id: 2, title: "Python", body: "Description of Python" },
     { id: 3, title: "PHP", body: "Description of PHP" },
@@ -13,25 +13,30 @@ function App() {
     { id: 5, title: "Go", body: "Description of Go" },
   ]);
 
-  const [title, setTitle] = useState("");
-  const bodyInputRef = useRef();
+  const [post, setPost] = useState({ title: "", body: "" });
 
   const addNewPost = (e) => {
     e.preventDefault();
-    console.log(title);
-    console.log(bodyInputRef.current.value);
+    setPosts([...posts, { ...post, id: Date.now() }]);
+    console.log(posts);
+    setPost({ title: "", body: "" });
   };
 
   return (
     <div className="App">
       <form>
         <MyInput
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={post.title}
+          onChange={(e) => setPost({ ...post, title: e.target.value })}
           type="text"
           placeholder="Название поста"
         />
-        <MyInput ref={bodyInputRef} type="text" placeholder="Описание поста" />
+        <MyInput
+          value={post.body}
+          onChange={(e) => setPost({ ...post, body: e.target.value })}
+          type="text"
+          placeholder="Описание поста"
+        />
         <MyButton onClick={addNewPost}>Создать пост</MyButton>
       </form>
       <PostList posts={posts} title={"Список постов 1"} />
