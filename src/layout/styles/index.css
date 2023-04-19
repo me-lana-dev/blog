@@ -98,7 +98,9 @@ font-family: 'Josefin Sans', sans-serif; */
 :where(.css-dev-only-do-not-override-htwhyh).ant-menu-light.ant-menu-horizontal
   > .ant-menu-item::after,
 :where(.css-htwhyh).ant-menu-light.ant-menu-horizontal
-  > .ant-menu-item-selected::after {
+  > .ant-menu-item-selected::after,
+:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-item:hover::after {
   display: none;
 }
 
@@ -106,6 +108,10 @@ font-family: 'Josefin Sans', sans-serif; */
 .ant-menu-title-content {
   color: #595959;
   /* margin-left: 24px; */
+}
+:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-item-selected {
+  color: #13c2c2;
 }
 :where(.css-dev-only-do-not-override-htwhyh).ant-menu-light.ant-menu-horizontal
   > .ant-menu-item-selected
