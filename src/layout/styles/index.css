@@ -1,0 +1,128 @@
+body {
+  font-family: "Hind", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* font-family: 'Hind', sans-serif;
+font-family: 'Josefin Sans', sans-serif; */
+
+/*code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+
+/* :where(
+    .css-dev-only-do-not-override-htwhyh
+  ).ant-menu-light.ant-menu-root.ant-menu-vertical {
+  border-inline-end: none;
+} */
+
+:where(.css-dev-only-do-not-override-htwhyh).ant-divider-vertical {
+  border-inline-start: 1px solid rgba(30, 30, 30, 1);
+  margin: 0 0 0 24px;
+}
+
+.header {
+  height: 128px;
+  padding-inline: 50px;
+  background-color: #fff;
+}
+
+.main {
+  min-height: calc(100vh - 208px);
+  color: #303030;
+  background-color: #eeeeee;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+  background: #fff;
+  color: #334455;
+}
+
+.footer a {
+  color: #595959;
+  color: #13c2c2;
+}
+
+.footer a:hover {
+  color: #999999;
+}
+
+.logo {
+  font-size: 48px;
+  line-height: 48px;
+  display: inline-flex;
+}
+
+.logo-link:hover {
+  color: #13c2c2;
+  cursor: pointer;
+}
+
+/* .logo-link:hover {
+  color: #999999;
+} */
+
+.menu__wrap {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.menu {
+  text-align: right;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-bottom: none;
+  justify-content: end;
+}
+
+.menu-2 {
+  min-width: 90px;
+}
+
+:where(.css-dev-only-do-not-override-htwhyh).ant-menu-horizontal
+  .ant-menu-item {
+  padding-inline: 24px 0;
+}
+
+:where(.css-dev-only-do-not-override-htwhyh).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-item::after {
+  display: none;
+}
+
+.menu__item,
+.ant-menu-title-content {
+  color: #595959;
+  /* margin-left: 24px; */
+}
+:where(.css-dev-only-do-not-override-htwhyh).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-item-selected
+  .ant-menu-title-content {
+  color: #999999;
+  color: #13c2c2;
+}
+.menu__item,
+.ant-menu-title-content:hover {
+  color: #999999;
+  color: #13c2c2;
+}
+.main__img {
+  height: calc(100vh - 208px);
+  background: #eeeeee center right -200px url("../images/bg-banner2.png") no-repeat;
+  background-size: cover;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.v100 {
+  height: calc(100vh - 208px);
+}
