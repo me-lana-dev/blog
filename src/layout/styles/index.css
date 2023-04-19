@@ -96,7 +96,9 @@ font-family: 'Josefin Sans', sans-serif; */
 }
 
 :where(.css-dev-only-do-not-override-htwhyh).ant-menu-light.ant-menu-horizontal
-  > .ant-menu-item::after {
+  > .ant-menu-item::after,
+:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-item-selected::after {
   display: none;
 }
 
