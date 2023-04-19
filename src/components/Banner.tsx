@@ -64,7 +64,7 @@ const Banner: React.FC = () => {
               About
             </Link>
             <Link
-              to="http://https://github.com/me-lana-dev"
+              to="https://me-lana-dev/github.io/blog"
               target="_blank"
               rel="noopener noreferrer"
               style={{
