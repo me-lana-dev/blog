@@ -13,7 +13,7 @@ const App = () => {
       } as IUser);
       setIsAuth(true);
     }
-  }, []);
+  }, [setUser, setIsAuth]);
 
   return <AppRouter />;
 };

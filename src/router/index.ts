@@ -5,7 +5,6 @@ import Posts from "../pages/Posts";
 import Contacts from "../pages/Contacts";
 import Login from "../pages/Login";
 import Admin from "../pages/Admin";
-import { Navigate } from "react-router-dom";
 
 export interface IRoute {
   path: string;

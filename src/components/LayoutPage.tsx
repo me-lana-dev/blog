@@ -1,6 +1,6 @@
-import { Col, Divider, Layout, Row, Space } from "antd";
+import { Col, Layout, Row, Space } from "antd";
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Logo from "./Logo";
 import Navbar from "./Navbar";
 
