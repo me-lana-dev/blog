@@ -104,6 +104,10 @@ font-family: 'Josefin Sans', sans-serif; */
   display: none;
 }
 
+:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal > .ant-menu-item::after {
+  border-bottom: none;
+}
+
 .menu__item,
 .ant-menu-title-content {
   color: #595959;
