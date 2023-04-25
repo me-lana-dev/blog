@@ -30,7 +30,7 @@ const LayoutPage: React.FC = () => {
         <Footer className="footer">
           © 2023 Blog | Blog Pet Project developed by
           <a
-            href="http://https://github.com/me-lana-dev"
+            href="https://github.com/me-lana-dev"
             target="_blank"
             rel="noopener noreferrer"
           >

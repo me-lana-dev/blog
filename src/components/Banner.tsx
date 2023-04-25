@@ -45,42 +45,14 @@ const Banner: React.FC = () => {
         </Row>
         <Row>
           <Col span={24} style={{}}>
-            <Link
-              to="/about"
-              style={{
-                display: "inline-flex",
-                justifyContent: "center",
-                alignItems: "center",
-                border: "2px solid #000",
-                fontSize: "14px",
-                fontWeight: "600",
-                textTransform: "uppercase",
-                letterSpacing: "4px",
-                lineHeight: "40px",
-                padding: "0 16px",
-                color: "#101010",
-              }}
-            >
+            <Link to="/about" className="main__btn">
               About
             </Link>
             <Link
-              to="https://me-lana-dev.github.io/blog/"
+              to="https://github.com/me-lana-dev/blog"
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                justifyContent: "center",
-                alignItems: "center",
-                border: "2px solid #000",
-                fontSize: "14px",
-                fontWeight: "600",
-                textTransform: "uppercase",
-                letterSpacing: "4px",
-                lineHeight: "40px",
-                padding: "0 16px",
-                color: "#101010",
-                marginLeft: "24px",
-              }}
+              className="main__btn"
             >
               GitHub
             </Link>
