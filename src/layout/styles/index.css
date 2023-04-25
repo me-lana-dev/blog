@@ -104,7 +104,15 @@ font-family: 'Josefin Sans', sans-serif; */
   display: none;
 }
 
-:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal > .ant-menu-item::after {
+:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal > .ant-menu-item::after,
+:where(.css-htwhyh).ant-menu-light
+  > .ant-menu.ant-menu-horizontal
+  > .ant-menu-item::after,
+:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-submenu::after,
+:where(.css-htwhyh).ant-menu-light
+  > .ant-menu.ant-menu-horizontal
+  > .ant-menu-submenu::after {
   border-bottom: none;
 }
 
