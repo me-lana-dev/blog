@@ -120,15 +120,18 @@ font-family: 'Josefin Sans', sans-serif; */
   border-bottom: none;
 }
 
-.menu__item,
-.ant-menu-title-content {
-  color: #595959;
-  /* margin-left: 24px; */
-}
+:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-item-selected,
+:where(.css-htwhyh).ant-menu-light
+  > .ant-menu.ant-menu-horizontal
+  > .ant-menu-item-selected,
+:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-submenu-selected,
+:where(.css-htwhyh).ant-menu-light
+  > .ant-menu.ant-menu-horizontal
+  > .ant-menu-submenu-selected,
 :where(.css-dev-only-do-not-override-htwhyh).ant-menu-light.ant-menu-horizontal
-  > .ant-menu-item-selected
-  .ant-menu-title-content,
-.ant-menu-light .ant-menu-item-selected {
+  > .ant-menu-item-selected {
   color: #999999;
   color: #13c2c2;
 }

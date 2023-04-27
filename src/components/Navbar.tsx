@@ -9,6 +9,7 @@ import { RouteNames } from "../router";
 const Navbar: React.FC = () => {
   const router = useNavigate();
   const { state } = useLocation();
+
   const [current, setCurrent] = useState("/");
 
   useEffect(() => {
