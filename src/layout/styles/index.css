@@ -125,10 +125,6 @@ font-family: 'Josefin Sans', sans-serif; */
   color: #595959;
   /* margin-left: 24px; */
 }
-:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal
-  > .ant-menu-item-selected {
-  color: #13c2c2;
-}
 :where(.css-dev-only-do-not-override-htwhyh).ant-menu-light.ant-menu-horizontal
   > .ant-menu-item-selected
   .ant-menu-title-content,
