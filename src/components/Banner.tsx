@@ -45,7 +45,11 @@ const Banner: React.FC = () => {
         </Row>
         <Row>
           <Col span={24} style={{}}>
-            <Link to="/about" className="main__btn">
+            <Link
+              to="/about"
+              className="main__btn"
+              state={{ currentlink: "about" }}
+            >
               About
             </Link>
             <Link

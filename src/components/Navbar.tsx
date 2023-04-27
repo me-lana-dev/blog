@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from "react";
 import { MenuProps, Menu, Divider } from "antd";
-import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { UserOutlined } from "@ant-design/icons";
@@ -8,8 +8,14 @@ import { RouteNames } from "../router";
 
 const Navbar: React.FC = () => {
   const router = useNavigate();
-  const { pathname, state } = useLocation();
-  console.log(pathname, state);
+  const { state } = useLocation();
+  const [current, setCurrent] = useState("/");
+
+  useEffect(() => {
+    if (state) {
+      setCurrent(state.currentlink);
+    }
+  }, [state]);
 
   const { isAuth, user } = useTypedSelector((state) => state.auth);
   const { logout } = useActions();
@@ -32,8 +38,6 @@ const Navbar: React.FC = () => {
       key: "contacts",
     },
   ];
-
-  const [current, setCurrent] = useState("/");
 
   const onClick: MenuProps["onClick"] = (e) => {
     router(e.key);
