@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useActions } from "./hooks/useActions";
 import { IUser } from "./models/user";
 import AppRouter from "./components/AppRouter";

@@ -74,7 +74,9 @@ font-family: 'Josefin Sans', sans-serif; */
 /* .logo-link:hover {
   color: #999999;
 } */
-
+.ant-menu-horizontal {
+  border-bottom: none;
+}
 .menu__wrap {
   display: flex;
   align-items: center;
