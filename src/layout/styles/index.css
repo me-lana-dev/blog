@@ -36,7 +36,6 @@ font-family: 'Josefin Sans', sans-serif; */
   min-height: calc(100vh - 208px);
   color: #303030;
   background-color: #eeeeee;
-  padding-inline: 50px;
 }
 
 .footer {

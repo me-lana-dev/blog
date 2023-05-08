@@ -17,7 +17,7 @@ const Posts: React.FC = () => {
   return (
     <Space
       direction="horizontal"
-      style={{ width: "100%", paddingBottom: "24px" }}
+      style={{ width: "100%", paddingBottom: "24px", paddingInline: "50px" }}
       size={[0, 48]}
     >
       <Row justify="space-between" align="stretch" gutter={[16, 24]}>
