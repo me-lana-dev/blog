@@ -179,3 +179,10 @@ font-family: 'Josefin Sans', sans-serif; */
 .blog .ant-card {
   min-height: 100%;
 }
+
+.ant-pagination {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 24px;
+}

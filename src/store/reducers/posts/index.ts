@@ -5,6 +5,9 @@ const initialState: PostsState = {
   posts: [],
   isLoading: false,
   error: "",
+  limit: 20,
+  total: 20,
+  page: 1,
 };
 
 export default function PostsReducer(
@@ -18,6 +21,10 @@ export default function PostsReducer(
       return { ...state, isLoading: true };
     case PostsActionEnum.SET_ERROR:
       return { ...state, error: action.payload, isLoading: false };
+    case PostsActionEnum.SET_POSTS_PAGE:
+      return { ...state, page: action.payload };
+    case PostsActionEnum.SET_POSTS_TOTAL_PAGES:
+      return { ...state, total: action.payload };
     default:
       return state;
   }
