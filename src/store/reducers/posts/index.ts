@@ -16,15 +16,25 @@ export default function PostsReducer(
 ) {
   switch (action.type) {
     case PostsActionEnum.SET_POSTS:
-      return { ...state, posts: action.payload };
+      let posts = { ...state, posts: action.payload };
+      //console.log(posts);
+      return posts;
     case PostsActionEnum.SET_IS_LOADING:
-      return { ...state, isLoading: true };
+      let p2 = { ...state, isLoading: action.payload };
+      //console.log("p2", p2);
+      return p2;
     case PostsActionEnum.SET_ERROR:
-      return { ...state, error: action.payload, isLoading: false };
+      let p3 = { ...state, error: action.payload, isLoading: false };
+      //console.log("p3", p3);
+      return p3;
     case PostsActionEnum.SET_POSTS_PAGE:
-      return { ...state, page: action.payload };
+      let p4 = { ...state, page: action.payload };
+      //console.log("p4", p4);
+      return p4;
     case PostsActionEnum.SET_POSTS_TOTAL_PAGES:
-      return { ...state, total: action.payload };
+      let p5 = { ...state, total: action.payload };
+      //console.log("p5", p5);
+      return p5;
     default:
       return state;
   }

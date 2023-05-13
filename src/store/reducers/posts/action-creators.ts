@@ -19,6 +19,10 @@ export const PostsActionCreators = {
     type: PostsActionEnum.SET_POSTS_TOTAL_PAGES,
     payload: total,
   }),
+  setIsLoading: (payload: boolean): SetIsLoadingAction => ({
+    type: PostsActionEnum.SET_IS_LOADING,
+    payload: payload,
+  }),
   fetchPosts:
     (page = 1, limit = 20) =>
     async (dispatch: AppDispatch) => {
@@ -29,18 +33,21 @@ export const PostsActionCreators = {
         const xTotalCount = response.headers["x-total-count"];
         dispatch(PostsActionCreators.setPostsTotalPages(xTotalCount));
         dispatch(PostsActionCreators.setIsLoading(false));
+        //console.log("fetch", "fetch");
       } catch (e) {
-        dispatch(PostsActionCreators.setError("Произошла ошибка при логине"));
+        dispatch(
+          PostsActionCreators.setError(
+            "Произошла ошибка при загрузке данных..."
+          )
+        );
       }
+      // debugger;
     },
   setPostsPage: (page: number): SetPostsPage => ({
     type: PostsActionEnum.SET_POSTS_PAGE,
     payload: page,
   }),
-  setIsLoading: (payload: boolean): SetIsLoadingAction => ({
-    type: PostsActionEnum.SET_IS_LOADING,
-    payload: payload,
-  }),
+
   setError: (payload: string): SetErrorAction => ({
     type: PostsActionEnum.SET_ERROR,
     payload: payload,
