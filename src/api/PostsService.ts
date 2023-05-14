@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { IPost } from "../models/post";
 
-export default class UserService {
+export default class PostsService {
   static async getPosts(
     page: number,
     limit: number
