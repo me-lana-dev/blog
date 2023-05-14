@@ -186,3 +186,35 @@ font-family: 'Josefin Sans', sans-serif; */
   width: 100%;
   margin-bottom: 24px;
 }
+
+.ant-card .ant-card-meta-title {
+  white-space: normal;
+}
+
+.ant-card-number {
+  background: #eeeeee;
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 50px;
+  display: flex;
+  min-width: 100%;
+  min-height: 150px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.ant-card-link {
+  font-weight: 600;
+}
+
+.ant-card .ant-card-link {
+  color: #13c2c2;
+}
+
+.ant-card .ant-card-link:hover {
+  color: #999999;
+}
+
+.ant-card .ant-card-meta {
+  margin-top: 20px;
+}

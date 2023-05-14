@@ -8,9 +8,11 @@ import { RouteNames } from "../router";
 
 const Navbar: React.FC = () => {
   const router = useNavigate();
+  const { pathname } = useLocation();
+  const currentItemMenu = pathname.trim().split("/");
   const { state } = useLocation();
 
-  const [current, setCurrent] = useState("/");
+  const [current, setCurrent] = useState(currentItemMenu[1]);
 
   useEffect(() => {
     if (state) {

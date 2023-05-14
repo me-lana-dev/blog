@@ -1,29 +1,25 @@
 import React, { useEffect } from "react";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
-import { Card, Col, Pagination, Row, Space } from "antd";
-import type { PaginationProps } from "antd";
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Space, Row, Col, Card } from "antd";
+import { Button } from "antd/es/radio";
 
-const Posts: React.FC = () => {
-  const { Meta } = Card;
+const Post = () => {
+  const { post, error, isLoading } = useTypedSelector((state) => state.post);
+  //console.log(post, error, isLoading);
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-  const { posts, error, isLoading, page, limit, total } = useTypedSelector(
-    (state) => state.posts
-  );
-  //console.log(posts, error, isLoading, page, limit, total);
+  // console.log(typeof id);
+  const { fetchPost } = useActions();
 
-  const { fetchPosts, setPostsPage } = useActions();
-
-  const onChange: PaginationProps["onChange"] = (pageNumber) => {
-    setPostsPage(pageNumber);
-  };
+  const goBackLink = () => navigate(-1);
 
   useEffect(() => {
-    fetchPosts(page, limit);
-    //console.log("render");
+    fetchPost(Number(id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, limit]);
+  }, [id]);
 
   if (isLoading) {
     return (
@@ -93,52 +89,33 @@ const Posts: React.FC = () => {
 
   return (
     <>
+      <h1 style={{ textAlign: "center", margin: "50px" }}>{post.title}</h1>
       <Space
         direction="horizontal"
-        style={{ width: "100%", paddingBottom: "24px", paddingInline: "50px" }}
+        style={{
+          width: "100%",
+          paddingBottom: "24px",
+          paddingInline: "50px",
+          justifyContent: "center",
+        }}
         size={[0, 48]}
       >
         <Row justify="space-between" align="stretch" gutter={[16, 24]}>
-          {posts.map((post) => (
-            <Col span={6} key={post.id}>
-              <Card
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "flex-start",
-                  minHeight: "100%",
-                }}
-              >
-                <div
-                  className="ant-card-number"
-                  style={{ marginRight: "16px" }}
-                >
-                  {post.id}.
-                </div>
-                <Link
-                  to={"/posts/" + post.id}
-                  state={{ currentlink: "posts" }}
-                  className="ant-card-link"
-                >
-                  {post.title}
-                </Link>
-                <Meta description={post.body} />
-              </Card>
-            </Col>
-          ))}
+          <Col span={24}>
+            <Card>
+              <Space wrap>
+                <Button type="primary" onClick={goBackLink}>
+                  Back
+                </Button>
+              </Space>
+              <h2>{post.id}.</h2>
+              <p>{post.body}</p>
+            </Card>
+          </Col>
         </Row>
       </Space>
-
-      <Pagination
-        showSizeChanger={false}
-        onChange={onChange}
-        defaultCurrent={1}
-        total={total}
-        showTotal={(totalPages) => `Total ${totalPages} items`}
-        defaultPageSize={20}
-      />
     </>
   );
 };
 
-export default Posts;
+export default Post;
