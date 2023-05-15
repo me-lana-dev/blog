@@ -132,10 +132,10 @@ const Posts: React.FC = () => {
       <Pagination
         showSizeChanger={false}
         onChange={onChange}
-        defaultCurrent={1}
+        defaultCurrent={page}
         total={total}
         showTotal={(totalPages) => `Total ${totalPages} items`}
-        defaultPageSize={20}
+        defaultPageSize={limit}
       />
     </>
   );
