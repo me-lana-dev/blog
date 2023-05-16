@@ -13,10 +13,18 @@ const Posts: React.FC = () => {
   );
   //console.log(posts, error, isLoading, page, limit, total);
 
-  const { fetchPosts, setPostsPage } = useActions();
+  const { fetchPosts, setPostsPage, setPostsLimitPages } = useActions();
 
   const onChange: PaginationProps["onChange"] = (pageNumber) => {
     setPostsPage(pageNumber);
+  };
+  const onShowSizeChange: PaginationProps["onShowSizeChange"] = (
+    current,
+    pageSize
+  ) => {
+    setPostsPage(1);
+    setPostsLimitPages(pageSize);
+    console.log(current, pageSize);
   };
 
   useEffect(() => {
@@ -93,12 +101,25 @@ const Posts: React.FC = () => {
 
   return (
     <>
+      <Pagination
+        className="pagination-top"
+        showSizeChanger
+        onShowSizeChange={onShowSizeChange}
+        pageSizeOptions={[20, 36, 52]}
+        onChange={onChange}
+        defaultCurrent={page}
+        total={total}
+        showTotal={(total, range) =>
+          `${range[0]}-${range[1]} of ${total} items`
+        }
+        defaultPageSize={limit}
+      />
       <Space
         direction="horizontal"
         style={{ width: "100%", paddingBottom: "24px", paddingInline: "50px" }}
         size={[0, 48]}
       >
-        <Row justify="space-between" align="stretch" gutter={[16, 24]}>
+        <Row justify="start" align="stretch" gutter={[16, 24]}>
           {posts.map((post) => (
             <Col span={6} key={post.id}>
               <Card
@@ -131,10 +152,13 @@ const Posts: React.FC = () => {
 
       <Pagination
         showSizeChanger={false}
+        hideOnSinglePage={true}
         onChange={onChange}
         defaultCurrent={page}
         total={total}
-        showTotal={(totalPages) => `Total ${totalPages} items`}
+        showTotal={(total, range) =>
+          `${range[0]}-${range[1]} of ${total} items`
+        }
         defaultPageSize={limit}
       />
     </>
