@@ -35,6 +35,10 @@ export default function PostsReducer(
       let p5 = { ...state, total: action.payload };
       //console.log("p5", p5);
       return p5;
+    case PostsActionEnum.SET_POSTS_LIMIT_PAGES:
+      let p6 = { ...state, limit: action.payload };
+      //console.log("p5", p5);
+      return p6;
     default:
       return state;
   }

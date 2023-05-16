@@ -15,6 +15,7 @@ export enum PostsActionEnum {
   SET_ERROR = "SET_ERROR",
   SET_POSTS_PAGE = "SET_POSTS_PAGE",
   SET_POSTS_TOTAL_PAGES = "SET_POSTS_TOTAL_PAGES",
+  SET_POSTS_LIMIT_PAGES = "SET_POSTS_LIMIT_PAGES",
 }
 
 export interface SetPostsAction {
@@ -42,9 +43,15 @@ export interface SetPostsTotalPages {
   payload: number;
 }
 
+export interface SetPostsLimitPages {
+  type: PostsActionEnum.SET_POSTS_LIMIT_PAGES;
+  payload: number;
+}
+
 export type PostsAction =
   | SetPostsAction
   | SetIsLoadingAction
   | SetErrorAction
   | SetPostsPage
-  | SetPostsTotalPages;
+  | SetPostsTotalPages
+  | SetPostsLimitPages;

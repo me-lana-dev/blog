@@ -7,6 +7,7 @@ import {
   SetPostsAction,
   SetPostsPage,
   SetPostsTotalPages,
+  SetPostsLimitPages,
 } from "./types";
 import PostsService from "../../../api/PostsService";
 
@@ -18,6 +19,10 @@ export const PostsActionCreators = {
   setPostsTotalPages: (total: number): SetPostsTotalPages => ({
     type: PostsActionEnum.SET_POSTS_TOTAL_PAGES,
     payload: total,
+  }),
+  setPostsLimitPages: (limit: number): SetPostsLimitPages => ({
+    type: PostsActionEnum.SET_POSTS_LIMIT_PAGES,
+    payload: limit,
   }),
   setIsLoading: (payload: boolean): SetIsLoadingAction => ({
     type: PostsActionEnum.SET_IS_LOADING,
