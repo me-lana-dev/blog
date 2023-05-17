@@ -28,6 +28,7 @@ const Posts: React.FC = () => {
   };
 
   useEffect(() => {
+    console.log("fetch posts");
     fetchPosts(page, limit);
     //console.log("render");
     // eslint-disable-next-line react-hooks/exhaustive-deps
