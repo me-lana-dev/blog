@@ -2,7 +2,7 @@ import React from "react";
 import LoginForm from "../components/LoginForm";
 import { Card, Layout, Row } from "antd";
 
-const Login: React.FC = () => {
+const LoginPage: React.FC = () => {
   return (
     <Layout className="v100">
       <Row justify="center" align="middle" className="v100">
@@ -14,4 +14,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

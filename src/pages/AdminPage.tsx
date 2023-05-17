@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Layout, Row } from "antd";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 
-const Admin: React.FC = () => {
+const AdminPage: React.FC = () => {
   const { user } = useTypedSelector((state) => state.auth);
 
   return (
@@ -18,4 +18,4 @@ const Admin: React.FC = () => {
   );
 };
 
-export default Admin;
+export default AdminPage;

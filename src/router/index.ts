@@ -1,11 +1,11 @@
 import React from "react";
-import Home from "../pages/Home";
-import About from "../pages/About";
+import Home from "../pages/HomePage";
+import About from "../pages/AboutPage";
 import Posts from "../pages/PostsPage";
 import Post from "../pages/PostPage";
-import Contacts from "../pages/Contacts";
-import Login from "../pages/Login";
-import Admin from "../pages/Admin";
+import Contacts from "../pages/ContactsPage";
+import Login from "../pages/LoginPage";
+import Admin from "../pages/AdminPage";
 
 export interface IRoute {
   path: string;

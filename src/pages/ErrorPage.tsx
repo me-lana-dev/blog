@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Result } from "antd";
 import { useNavigate } from "react-router-dom";
 
-const Error: React.FC = () => {
+const ErrorPage: React.FC = () => {
   const goHome = useNavigate();
 
   return (
@@ -19,4 +19,4 @@ const Error: React.FC = () => {
   );
 };
 
-export default Error;
+export default ErrorPage;
