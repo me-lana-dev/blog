@@ -1,25 +1,20 @@
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
-import { useNavigate, useParams } from "react-router-dom";
-import { Space, Row, Col, Card } from "antd";
-import { Button } from "antd/es/radio";
+import { Card, Col, Row, Space } from "antd";
 
-const Post = () => {
-  const { post, error, isLoading } = useTypedSelector((state) => state.post);
-  //console.log(post, error, isLoading);
-  //console.log("isloading post", isLoading);
+const Comments: React.FC = () => {
+  const { comments, error, isLoading } = useTypedSelector(
+    (state) => state.comments
+  );
+  //console.log(error, "isLoading comments", isLoading);
   const { id } = useParams();
-  const navigate = useNavigate();
-
-  // console.log(typeof id);
-  const { fetchPost } = useActions();
-
-  const goBackLink = () => navigate(-1);
+  const { fetchComments } = useActions();
 
   useEffect(() => {
-    //console.log("fetch post");
-    fetchPost(Number(id));
+    //console.log("fetch comments");
+    fetchComments(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
@@ -91,7 +86,8 @@ const Post = () => {
 
   return (
     <>
-      <h1 style={{ textAlign: "center", margin: "50px" }}>{post.title}</h1>
+      <h2 style={{ textAlign: "center", margin: "50px" }}>Comments</h2>
+
       <Space
         direction="horizontal"
         style={{
@@ -104,15 +100,22 @@ const Post = () => {
       >
         <Row justify="space-between" align="stretch" gutter={[16, 24]}>
           <Col span={24}>
-            <Card>
-              <Space wrap>
-                <Button type="primary" onClick={goBackLink}>
-                  Back
-                </Button>
-              </Space>
-              <h2>{post.id}.</h2>
-              <p>{post.body}</p>
-            </Card>
+            {comments &&
+              comments.map((comment) => (
+                <Card
+                  title={comment.name}
+                  extra={
+                    <a href={"mailto:" + comment.email}>{comment.email}</a>
+                  }
+                  style={{ minWidth: "100%", marginBottom: "24px" }}
+                  key={comment.id}
+                >
+                  <div>
+                    {comment.id}. {comment.body}
+                  </div>
+                </Card>
+              ))}
+            {!comments && <p>Comments empty.</p>}
           </Col>
         </Row>
       </Space>
@@ -120,4 +123,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default Comments;

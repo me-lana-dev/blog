@@ -26,7 +26,7 @@ export const PostActionCreators = {
       dispatch(PostActionCreators.setIsLoading(true));
       const response = await PostService.getPost(id);
       const postData = response.data;
-      console.log(postData);
+      //console.log(postData);
       dispatch(PostActionCreators.setPost(postData));
       dispatch(PostActionCreators.setIsLoading(false));
     } catch (e) {
