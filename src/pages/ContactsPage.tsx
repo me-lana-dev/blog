@@ -1,6 +1,6 @@
 import React from "react";
 
-const Contacts: React.FC = () => {
+const ContactsPage: React.FC = () => {
   return (
     <>
       <h1 style={{ textAlign: "center", margin: "50px" }}>Contacts</h1>
@@ -8,4 +8,4 @@ const Contacts: React.FC = () => {
   );
 };
 
-export default Contacts;
+export default ContactsPage;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { privateRoutes, publicRoutes } from "../router";
-import Error from "../pages/Error";
+import Error from "../pages/ErrorPage";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import LayoutPage from "./LayoutPage";
 
