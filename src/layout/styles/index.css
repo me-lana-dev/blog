@@ -226,3 +226,16 @@ a:hover {
 .ant-card .ant-card-meta {
   margin-top: 20px;
 }
+
+.pagination-top {
+  padding-inline: 50px;
+}
+.ant-pagination.pagination-top {
+  justify-content: flex-end;
+}
+
+.ant-pagination.pagination-top .ant-pagination-item,
+.ant-pagination.pagination-top .ant-pagination-prev,
+.ant-pagination.pagination-top .ant-pagination-next {
+  display: none;
+}

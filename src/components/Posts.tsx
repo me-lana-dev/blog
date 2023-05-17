@@ -106,7 +106,7 @@ const Posts: React.FC = () => {
         className="pagination-top"
         showSizeChanger
         onShowSizeChange={onShowSizeChange}
-        pageSizeOptions={[20, 36, 52]}
+        pageSizeOptions={[20, 36, 52, 100]}
         onChange={onChange}
         defaultCurrent={page}
         total={total}
@@ -157,9 +157,6 @@ const Posts: React.FC = () => {
         onChange={onChange}
         defaultCurrent={page}
         total={total}
-        showTotal={(total, range) =>
-          `${range[0]}-${range[1]} of ${total} items`
-        }
         defaultPageSize={limit}
       />
     </>
