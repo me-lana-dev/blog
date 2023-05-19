@@ -11,7 +11,7 @@ const Posts: React.FC = () => {
   const { posts, error, isLoading, page, limit, total } = useTypedSelector(
     (state) => state.posts
   );
-  //console.log(posts, error, isLoading, page, limit, total);
+  console.log(posts, error, isLoading, page, limit, total);
 
   const { fetchPosts, setPostsPage, setPostsLimitPages } = useActions();
 
@@ -24,11 +24,11 @@ const Posts: React.FC = () => {
   ) => {
     setPostsPage(1);
     setPostsLimitPages(pageSize);
-    console.log(current, pageSize);
+    //console.log(current, pageSize);
   };
 
   useEffect(() => {
-    console.log("fetch posts");
+    //console.log("fetch posts");
     fetchPosts(page, limit);
     //console.log("render");
     // eslint-disable-next-line react-hooks/exhaustive-deps
