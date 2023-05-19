@@ -1,17 +1,25 @@
 import React, { useEffect } from "react";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
-import { Card, Col, Row, Space, Table } from "antd";
+import {
+  Card,
+  Col,
+  Pagination,
+  PaginationProps,
+  Row,
+  Space,
+  Table,
+} from "antd";
 
 const PostsAdmin: React.FC = () => {
   const { posts, error, isLoading, page, limit, total } = useTypedSelector(
     (state) => state.posts
   );
-  console.log(posts, error, isLoading, page, limit, total);
-  const { fetchPosts } = useActions();
+  //console.log(posts, error, isLoading, page, limit, total);
+  const { fetchPosts, setPostsPage } = useActions();
 
   useEffect(() => {
-    console.log("fetch posts");
+    //console.log("fetch posts");
     fetchPosts(page, limit);
     //console.log("render");
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -106,6 +114,10 @@ const PostsAdmin: React.FC = () => {
     },
   ];
 
+  const onChange: PaginationProps["onChange"] = (pageNumber) => {
+    setPostsPage(pageNumber);
+  };
+
   return (
     <>
       <Space
@@ -118,6 +130,15 @@ const PostsAdmin: React.FC = () => {
             dataSource={posts}
             columns={columns}
             rowKey={(record) => record.id}
+            pagination={false}
+          />
+          <Pagination
+            showSizeChanger={false}
+            hideOnSinglePage={true}
+            onChange={onChange}
+            defaultCurrent={page}
+            total={total}
+            defaultPageSize={limit}
           />
         </Row>
       </Space>
