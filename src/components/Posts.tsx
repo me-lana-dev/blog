@@ -11,7 +11,7 @@ const Posts: React.FC = () => {
   const { posts, error, isLoading, page, limit, total } = useTypedSelector(
     (state) => state.posts
   );
-  console.log(posts, error, isLoading, page, limit, total);
+  //console.log(posts, error, isLoading, page, limit, total);
 
   const { fetchPosts, setPostsPage, setPostsLimitPages } = useActions();
 

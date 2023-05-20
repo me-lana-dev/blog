@@ -30,24 +30,26 @@ export const AuthActionCreators = {
     (username: string, password: string) => async (dispatch: AppDispatch) => {
       try {
         dispatch(AuthActionCreators.setIsLoading(true));
-        setTimeout(async () => {
-          const response = await UserService.getUsers();
-          const mockUser = response.data.find(
-            (user) => user.username === username && user.password === password
-          );
-          if (mockUser) {
-            localStorage.setItem("auth", "true");
-            localStorage.setItem("username", mockUser.username);
+        // setTimeout(async () => {
+        const response = await UserService.getUsers();
+        const mockUser = response.data.find(
+          (user) => user.username === username && user.password === password
+        );
+        //console.log("mockUser", mockUser);
+        if (mockUser) {
+          localStorage.setItem("auth", "true");
+          localStorage.setItem("username", mockUser.username);
+          localStorage.setItem("userid", String(mockUser.id));
 
-            dispatch(AuthActionCreators.setUser(mockUser));
-            dispatch(AuthActionCreators.setIsAuth(true));
-          } else {
-            dispatch(
-              AuthActionCreators.setError("Некорректный username или пароль!")
-            );
-          }
-          dispatch(AuthActionCreators.setIsLoading(false));
-        }, 1000);
+          dispatch(AuthActionCreators.setUser(mockUser));
+          dispatch(AuthActionCreators.setIsAuth(true));
+        } else {
+          dispatch(
+            AuthActionCreators.setError("Некорректный username или пароль!")
+          );
+        }
+        dispatch(AuthActionCreators.setIsLoading(false));
+        // }, 1000);
       } catch (e) {
         dispatch(AuthActionCreators.setError("Произошла ошибка при логине"));
       }
@@ -55,6 +57,7 @@ export const AuthActionCreators = {
   logout: () => async (dispatch: AppDispatch) => {
     localStorage.removeItem("auth");
     localStorage.removeItem("username");
+    localStorage.removeItem("userid");
     dispatch(AuthActionCreators.setUser({} as IUser));
     dispatch(AuthActionCreators.setIsAuth(false));
   },

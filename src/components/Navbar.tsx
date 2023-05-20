@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MenuProps, Menu, Divider } from "antd";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { UserOutlined } from "@ant-design/icons";
 import { useActions } from "../hooks/useActions";
@@ -21,6 +21,7 @@ const Navbar: React.FC = () => {
   }, [state]);
 
   const { isAuth, user } = useTypedSelector((state) => state.auth);
+  //console.log("Navbar", "isAuth =", isAuth, "user =", user);
   const { logout } = useActions();
 
   const items: MenuProps["items"] = [
@@ -64,11 +65,13 @@ const Navbar: React.FC = () => {
       <Divider type="vertical" />
       {isAuth ? (
         <>
-          <span
+          <Link
+            to="/admin"
+            state={{ currentlink: "admin" }}
             style={{ color: "#000", marginLeft: "25px", fontWeight: "600" }}
           >
-            {user.username}
-          </span>
+            ADMIN {user.username}
+          </Link>
           <Menu
             mode="horizontal"
             className="menu menu-2"

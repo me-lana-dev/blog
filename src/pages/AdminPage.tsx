@@ -4,12 +4,22 @@ import PostsAdmin from "../components/PostsAdmin";
 
 const AdminPage: React.FC = () => {
   const { user } = useTypedSelector((state) => state.auth);
-  //console.log(isAuth, user);
+  // console.log(
+  //   "adminPage",
+  //   "isAuth =",
+  //   isAuth,
+  //   "user =",
+  //   user,
+  //   "isLoading =",
+  //   isLoading,
+  //   "error =",
+  //   error
+  // );
 
   return (
     <>
       <h1 style={{ textAlign: "center", margin: "50px" }}>
-        Admin {user.name}!
+        Admin {user.username}!
       </h1>
       <PostsAdmin />
     </>

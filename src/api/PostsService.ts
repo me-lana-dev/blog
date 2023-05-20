@@ -10,4 +10,17 @@ export default class PostsService {
       params: { _page: page, _limit: limit },
     });
   }
+
+  static async getPostsUser(
+    page: number,
+    limit: number,
+    userid: number
+  ): Promise<AxiosResponse<IPost[]>> {
+    return axios.get<IPost[]>(
+      `https://jsonplaceholder.typicode.com/users/${userid}/posts`,
+      {
+        params: { _page: page, _limit: limit },
+      }
+    );
+  }
 }
