@@ -33,11 +33,13 @@ export const PostsActionCreators = {
     async (dispatch: AppDispatch) => {
       try {
         dispatch(PostsActionCreators.setIsLoading(true));
+
         const response = await PostsService.getPosts(page, limit);
         dispatch(PostsActionCreators.setPosts(response.data));
         const xTotalCount = response.headers["x-total-count"];
         dispatch(PostsActionCreators.setPostsTotalPages(xTotalCount));
         dispatch(PostsActionCreators.setIsLoading(false));
+
         //console.log("fetch", "fetch");
       } catch (e) {
         dispatch(
@@ -45,6 +47,7 @@ export const PostsActionCreators = {
             "Произошла ошибка при загрузке данных..."
           )
         );
+        dispatch(PostsActionCreators.setIsLoading(false));
       }
       // debugger;
     },
@@ -57,4 +60,25 @@ export const PostsActionCreators = {
     type: PostsActionEnum.SET_ERROR,
     payload: payload,
   }),
+  fetchPostsUser:
+    (page = 1, limit = 20, userid: number) =>
+    async (dispatch: AppDispatch) => {
+      try {
+        dispatch(PostsActionCreators.setIsLoading(true));
+        setTimeout(async () => {
+          const response = await PostsService.getPostsUser(page, limit, userid);
+          dispatch(PostsActionCreators.setPosts(response.data));
+          const xTotalCount = response.headers["x-total-count"];
+          dispatch(PostsActionCreators.setPostsTotalPages(xTotalCount));
+          dispatch(PostsActionCreators.setIsLoading(false));
+        }, 1000);
+      } catch (e) {
+        dispatch(
+          PostsActionCreators.setError(
+            "Произошла ошибка при загрузке данных..."
+          )
+        );
+        dispatch(PostsActionCreators.setIsLoading(false));
+      }
+    },
 };
