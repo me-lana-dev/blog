@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
-import { Card, Col, Row, Space } from "antd";
+import { Card, Col, Row, Space, Spin } from "antd";
 
 const Comments: React.FC = () => {
   const { comments, error, isLoading } = useTypedSelector(
@@ -34,17 +34,7 @@ const Comments: React.FC = () => {
       >
         <Row justify="space-between" align="stretch" gutter={[16, 24]}>
           <Col span={24}>
-            <Card
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                fontSize: "24px",
-                minHeight: "100%",
-              }}
-            >
-              <span>Идет загрузка...</span>
-            </Card>
+            <Spin size="large" />
           </Col>
         </Row>
       </Space>
