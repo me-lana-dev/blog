@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 import { useNavigate, useParams } from "react-router-dom";
-import { Space, Row, Col, Card } from "antd";
+import { Space, Row, Col, Card, Spin } from "antd";
 import { Button } from "antd/es/radio";
 
 const Post = () => {
@@ -39,17 +39,7 @@ const Post = () => {
       >
         <Row justify="space-between" align="stretch" gutter={[16, 24]}>
           <Col span={24}>
-            <Card
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                fontSize: "24px",
-                minHeight: "100%",
-              }}
-            >
-              <span>Идет загрузка...</span>
-            </Card>
+            <Spin size="large" />
           </Col>
         </Row>
       </Space>

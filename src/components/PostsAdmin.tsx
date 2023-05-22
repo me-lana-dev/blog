@@ -9,6 +9,7 @@ import {
   PaginationProps,
   Row,
   Space,
+  Spin,
   Table,
 } from "antd";
 import { IPost } from "../models/post";
@@ -53,17 +54,7 @@ const PostsAdmin: React.FC = () => {
       >
         <Row justify="space-between" align="stretch" gutter={[16, 24]}>
           <Col span={24}>
-            <Card
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                fontSize: "24px",
-                minHeight: "100%",
-              }}
-            >
-              <span>Идет загрузка...</span>
-            </Card>
+            <Spin size="large" />
           </Col>
         </Row>
       </Space>
