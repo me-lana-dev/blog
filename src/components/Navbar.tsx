@@ -57,22 +57,30 @@ const Navbar: React.FC = () => {
         onClick={onClick}
         selectedKeys={[current]}
         style={{
+          minWidth: 0,
+          flex: "auto",
           textAlign: "right",
           fontSize: "14px",
           textTransform: "uppercase",
         }}
       ></Menu>
-      <Divider type="vertical" />
+      <Divider type="vertical" style={{ minWidth: 0 }} />
       {isAuth ? (
         <>
           <Link
             to="/admin"
             state={{ currentlink: "admin" }}
-            style={{ color: "#000", marginLeft: "25px", fontWeight: "600" }}
+            style={{
+              minWidth: 0,
+              color: "#000",
+              marginLeft: "25px",
+              fontWeight: "600",
+            }}
           >
             ADMIN {user.username}
           </Link>
           <Menu
+            style={{ minWidth: 0, flexShrink: 1, flexGrow: 0 }}
             mode="horizontal"
             className="menu menu-2"
             selectable={false}
@@ -87,19 +95,22 @@ const Navbar: React.FC = () => {
           />
         </>
       ) : (
-        <Menu
-          mode="horizontal"
-          className="menu-2"
-          selectable={false}
-          onClick={() => router(RouteNames.LOGIN)}
-          items={[
-            {
-              label: "LOGIN",
-              key: RouteNames.LOGIN,
-              icon: <UserOutlined />,
-            },
-          ]}
-        />
+        <>
+          <Menu
+            style={{ minWidth: 0, flexShrink: 1, flexGrow: 0 }}
+            mode="horizontal"
+            className="menu-2"
+            selectable={false}
+            onClick={() => router(RouteNames.LOGIN)}
+            items={[
+              {
+                label: "LOGIN",
+                key: RouteNames.LOGIN,
+                icon: <UserOutlined />,
+              },
+            ]}
+          />
+        </>
       )}
     </div>
   );
