@@ -99,10 +99,6 @@ a:hover {
   justify-content: flex-end;
 }
 
-.menu-2 {
-  min-width: 98px;
-}
-
 :where(.css-dev-only-do-not-override-htwhyh).ant-menu-horizontal .ant-menu-item,
 :where(.css-htwhyh).ant-menu-horizontal .ant-menu-item,
 :where(.css-htwhyh).ant-menu-horizontal .ant-menu-submenu {
