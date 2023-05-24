@@ -97,7 +97,7 @@ const Navbar: React.FC = () => {
       ) : (
         <>
           <Menu
-            style={{ minWidth: 0, flexShrink: 1, flexGrow: 0 }}
+            style={{ minWidth: "90px", flexShrink: 1, flexGrow: 0 }}
             mode="horizontal"
             className="menu-2"
             selectable={false}
