@@ -80,7 +80,7 @@ const Navbar: React.FC = () => {
             ADMIN {user.username}
           </Link>
           <Menu
-            style={{ minWidth: "90px", flexShrink: 1, flexGrow: 0 }}
+            style={{ minWidth: "102px", flexShrink: 1, flexGrow: 0 }}
             mode="horizontal"
             className="menu menu-2"
             selectable={false}
