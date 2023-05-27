@@ -36,4 +36,5 @@ export const PostActionCreators = {
       dispatch(PostActionCreators.setIsLoading(false));
     }
   },
+  addPost: (title: string, body: string) => async (dispatch: AppDispatch) => {},
 };
