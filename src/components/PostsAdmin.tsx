@@ -147,6 +147,15 @@ const PostsAdmin: React.FC = () => {
         <Row justify="start" align="stretch" gutter={[16, 24]}>
           {posts.length > 0 && (
             <>
+              <h2
+                style={{
+                  flexBasis: "100%",
+                  textAlign: "center",
+                  margin: "20px",
+                }}
+              >
+                All my posts
+              </h2>
               <Table
                 dataSource={posts}
                 columns={columns}
