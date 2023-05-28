@@ -20,8 +20,7 @@ font-family: 'Josefin Sans', sans-serif; */
   border-inline-end: none;
 } */
 
-:where(.css-dev-only-do-not-override-htwhyh).ant-divider-vertical,
-:where(.css-htwhyh).ant-divider-vertical {
+.ant-divider-vertical {
   border-inline-start: 1px solid rgba(30, 30, 30, 1);
   margin: 0 0 0 24px;
 }
@@ -99,45 +98,30 @@ a:hover {
   justify-content: flex-end;
 }
 
-:where(.css-dev-only-do-not-override-htwhyh).ant-menu-horizontal .ant-menu-item,
-:where(.css-htwhyh).ant-menu-horizontal .ant-menu-item,
-:where(.css-htwhyh).ant-menu-horizontal .ant-menu-submenu {
+.ant-menu-horizontal .ant-menu-item,
+.ant-menu-horizontal .ant-menu-item,
+.ant-menu-horizontal .ant-menu-submenu {
   padding-inline: 24px 0;
 }
 
-:where(.css-dev-only-do-not-override-htwhyh).ant-menu-light.ant-menu-horizontal
-  > .ant-menu-item::after,
-:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal
-  > .ant-menu-item-selected::after,
-:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal
-  > .ant-menu-item:hover::after {
+.ant-menu-light.ant-menu-horizontal > .ant-menu-item::after,
+.ant-menu-light.ant-menu-horizontal > .ant-menu-item-selected::after,
+.ant-menu-light.ant-menu-horizontal > .ant-menu-item:hover::after {
   display: none;
 }
 
-:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal > .ant-menu-item::after,
-:where(.css-htwhyh).ant-menu-light
-  > .ant-menu.ant-menu-horizontal
-  > .ant-menu-item::after,
-:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal
-  > .ant-menu-submenu::after,
-:where(.css-htwhyh).ant-menu-light
-  > .ant-menu.ant-menu-horizontal
-  > .ant-menu-submenu::after {
+.ant-menu-light.ant-menu-horizontal > .ant-menu-item::after,
+.ant-menu-light > .ant-menu.ant-menu-horizontal > .ant-menu-item::after,
+.ant-menu-light.ant-menu-horizontal > .ant-menu-submenu::after,
+.ant-menu-light > .ant-menu.ant-menu-horizontal > .ant-menu-submenu::after {
   border-bottom: none;
 }
 
-:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal
-  > .ant-menu-item-selected,
-:where(.css-htwhyh).ant-menu-light
-  > .ant-menu.ant-menu-horizontal
-  > .ant-menu-item-selected,
-:where(.css-htwhyh).ant-menu-light.ant-menu-horizontal
-  > .ant-menu-submenu-selected,
-:where(.css-htwhyh).ant-menu-light
-  > .ant-menu.ant-menu-horizontal
-  > .ant-menu-submenu-selected,
-:where(.css-dev-only-do-not-override-htwhyh).ant-menu-light.ant-menu-horizontal
-  > .ant-menu-item-selected {
+.ant-menu-light.ant-menu-horizontal > .ant-menu-item-selected,
+.ant-menu-light > .ant-menu.ant-menu-horizontal > .ant-menu-item-selected,
+.ant-menu-light.ant-menu-horizontal > .ant-menu-submenu-selected,
+.ant-menu-light > .ant-menu.ant-menu-horizontal > .ant-menu-submenu-selected,
+.ant-menu-light.ant-menu-horizontal > .ant-menu-item-selected {
   color: #999999;
   color: #13c2c2;
 }
