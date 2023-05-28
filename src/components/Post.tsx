@@ -3,7 +3,7 @@ import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 import { useNavigate, useParams } from "react-router-dom";
 import { Space, Row, Col, Card, Spin } from "antd";
-import { Button } from "antd/es/radio";
+import { Button } from "antd";
 
 const Post = () => {
   const { post, error, isLoading } = useTypedSelector((state) => state.post);

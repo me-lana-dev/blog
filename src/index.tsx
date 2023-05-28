@@ -7,14 +7,24 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./store";
+import { ConfigProvider } from "antd";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <Provider store={store}>
     <BrowserRouter basename="/blog">
-      <App />
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#13c2c2",
+          },
+        }}
+      >
+        <App />
+      </ConfigProvider>
     </BrowserRouter>
   </Provider>
 );
