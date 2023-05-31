@@ -75,6 +75,7 @@ const Navbar: React.FC = () => {
               color: "#000",
               marginLeft: "25px",
               fontWeight: "600",
+              fontFamily: "Hind, sans-serif",
             }}
           >
             ADMIN {user.username}
