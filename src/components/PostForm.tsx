@@ -1,14 +1,32 @@
 import { Space, Row, Form, Input, Button, Card } from "antd";
-import React, { useState } from "react";
-//import { useTypedSelector } from "../hooks/useTypedSelector";
+import React, { useEffect, useState } from "react";
+import { useTypedSelector } from "../hooks/useTypedSelector";
+import { useActions } from "../hooks/useActions";
 
 const PostForm: React.FC = () => {
-  //const { posts } = useTypedSelector((state) => state.posts);
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  //console.log(posts);
+  const { posts } = useTypedSelector((state) => state.posts);
+  const { isAuth, user } = useTypedSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (isAuth && user.id === undefined) {
+      user.id = Number(localStorage.getItem("id"));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user.id]);
+
+  const { setPosts } = useActions();
+
+  const [newPost, setNewPost] = useState({
+    userId: user.id,
+    id: Date.now(),
+    title: "",
+    body: "",
+  });
+
   const submit = () => {
-    console.log(title, body);
+    setNewPost({ ...newPost, id: Date.now() });
+    const newData = [...posts, newPost];
+    setPosts(newData);
   };
 
   return (
@@ -26,12 +44,19 @@ const PostForm: React.FC = () => {
               </h2>
               <Form.Item label="Title" name="title">
                 <Input
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  value={newPost.title}
+                  onChange={(e) =>
+                    setNewPost({ ...newPost, title: e.target.value })
+                  }
                 />
               </Form.Item>
               <Form.Item label="Body" name="body">
-                <Input value={body} onChange={(e) => setBody(e.target.value)} />
+                <Input
+                  value={newPost.body}
+                  onChange={(e) =>
+                    setNewPost({ ...newPost, body: e.target.value })
+                  }
+                />
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">
