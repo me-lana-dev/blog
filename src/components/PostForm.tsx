@@ -3,7 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 
-const PostForm: React.FC = () => {
+const PostForm = (props: any) => {
+  //console.log(props);
+
+  const [form] = Form.useForm();
+  //console.log(form);
+
   const { posts } = useTypedSelector((state) => state.posts);
   const { isAuth, user } = useTypedSelector((state) => state.auth);
 
@@ -23,10 +28,38 @@ const PostForm: React.FC = () => {
     body: "",
   });
 
+  useEffect(() => {
+    if (props.newPost) {
+      setNewPost({ ...newPost, id: props.newPost.id });
+      //console.log("new");
+      form.setFieldsValue({
+        id: props.newPost.id,
+        userId: props.newPost.userId,
+        title: props.newPost.title,
+        body: props.newPost.body,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.newPost]);
+
   const submit = () => {
-    setNewPost({ ...newPost, id: Date.now() });
-    const newData = [...posts, newPost];
-    setPosts(newData);
+    if (props.newPost) {
+      //console.log(newPost);
+      //console.log(props.newPost.id);
+
+      const newData = posts.filter((item) => item.id !== props.newPost.id);
+      //console.log("newData after filter", newData);
+
+      const editData = [...newData, newPost];
+      //console.log(editData);
+      setPosts(editData);
+    } else {
+      setNewPost({ ...newPost, id: Date.now() });
+      const newData = [...posts, newPost];
+      setPosts(newData);
+    }
+
+    form.setFieldsValue({ title: "", body: "" });
   };
 
   return (
@@ -38,11 +71,15 @@ const PostForm: React.FC = () => {
       >
         <Row justify="start" align="stretch" gutter={[16, 24]}>
           <Card style={{ width: "100%" }}>
-            <Form onFinish={submit}>
+            <Form onFinish={submit} form={form}>
               <h2 style={{ textAlign: "center", margin: "0 0 20px 0" }}>
                 Add new Post
               </h2>
-              <Form.Item label="Title" name="title">
+              <Form.Item
+                label="Title"
+                name="title"
+                rules={[{ required: true, message: "Please input title!" }]}
+              >
                 <Input
                   value={newPost.title}
                   onChange={(e) =>
@@ -50,7 +87,13 @@ const PostForm: React.FC = () => {
                   }
                 />
               </Form.Item>
-              <Form.Item label="Body" name="body">
+              <Form.Item
+                label="Body"
+                name="body"
+                rules={[
+                  { required: true, message: "Please input description!" },
+                ]}
+              >
                 <Input
                   value={newPost.body}
                   onChange={(e) =>

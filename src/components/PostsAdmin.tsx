@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 import type { ColumnsType } from "antd/es/table";
@@ -11,10 +11,21 @@ import {
   Space,
   Spin,
   Table,
+  Button,
+  Modal,
 } from "antd";
 import { IPost } from "../models/post";
+import PostForm from "./PostForm";
 
 const PostsAdmin: React.FC = () => {
+  const [open, setOpen] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [newPost, setNewPost] = useState({
+    userId: 0,
+    id: 0,
+    title: "",
+    body: "",
+  });
   const { posts, error, isLoading, page, limit, total } = useTypedSelector(
     (state) => state.posts
   );
@@ -106,8 +117,12 @@ const PostsAdmin: React.FC = () => {
       key: "action",
       render: (_, record: { id: React.Key }) => (
         <Space size="middle">
-          <button onClick={() => handleDelete(record.id)}>Delete</button>{" "}
-          <span>Редактировать</span>
+          <Button type="primary" onClick={() => handleDelete(record.id)}>
+            Delete
+          </Button>
+          <Button type="primary" onClick={() => handleEdit(record.id)}>
+            Edit
+          </Button>
         </Space>
       ),
     },
@@ -137,6 +152,39 @@ const PostsAdmin: React.FC = () => {
     setPosts(newData);
   };
 
+  const handleEdit = (id: React.Key) => {
+    const newData = posts.filter((item) => item.id === id);
+    //console.log(newData);
+    setNewPost({
+      ...newPost,
+      userId: newData[0].userId,
+      id: newData[0].id,
+      title: newData[0].title,
+      body: newData[0].body,
+    });
+    //console.log("newPost", newPost);
+    //console.log(newData[0].title, newData[0].body);
+    showModal();
+
+    //setPosts(newData);
+  };
+
+  const showModal = () => {
+    setOpen(true);
+  };
+
+  const handleOk = () => {
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setOpen(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       <Space
@@ -145,6 +193,14 @@ const PostsAdmin: React.FC = () => {
         size={[0, 48]}
       >
         <Row justify="start" align="stretch" gutter={[16, 24]}>
+          <Modal
+            title="Edit Post"
+            open={open}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          >
+            <PostForm newPost={newPost} />
+          </Modal>
           {posts.length > 0 && (
             <>
               <h2
