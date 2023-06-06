@@ -30,11 +30,16 @@ const PostForm = (props: any) => {
 
   useEffect(() => {
     if (props.newPost) {
-      setNewPost({ ...newPost, id: props.newPost.id });
       //console.log("new");
       form.setFieldsValue({
         id: props.newPost.id,
         userId: props.newPost.userId,
+        title: props.newPost.title,
+        body: props.newPost.body,
+      });
+      setNewPost({
+        ...newPost,
+        id: props.newPost.id,
         title: props.newPost.title,
         body: props.newPost.body,
       });
@@ -53,6 +58,7 @@ const PostForm = (props: any) => {
       const editData = [...newData, newPost];
       //console.log(editData);
       setPosts(editData);
+      props.onSubmit();
     } else {
       setNewPost({ ...newPost, id: Date.now() });
       const newData = [...posts, newPost];
@@ -71,7 +77,7 @@ const PostForm = (props: any) => {
       >
         <Row justify="start" align="stretch" gutter={[16, 24]}>
           <Card style={{ width: "100%" }}>
-            <Form onFinish={submit} form={form}>
+            <Form id="editPost" onFinish={submit} form={form}>
               <h2 style={{ textAlign: "center", margin: "0 0 20px 0" }}>
                 Add new Post
               </h2>

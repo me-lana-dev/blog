@@ -19,13 +19,13 @@ import PostForm from "./PostForm";
 
 const PostsAdmin: React.FC = () => {
   const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
   const [newPost, setNewPost] = useState({
     userId: 0,
     id: 0,
     title: "",
     body: "",
   });
+
   const { posts, error, isLoading, page, limit, total } = useTypedSelector(
     (state) => state.posts
   );
@@ -174,11 +174,7 @@ const PostsAdmin: React.FC = () => {
   };
 
   const handleOk = () => {
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 2000);
+    setOpen(false);
   };
 
   const handleCancel = () => {
@@ -198,8 +194,9 @@ const PostsAdmin: React.FC = () => {
             open={open}
             onOk={handleOk}
             onCancel={handleCancel}
+            footer={null}
           >
-            <PostForm newPost={newPost} />
+            <PostForm newPost={newPost} onSubmit={handleOk} />
           </Modal>
           {posts.length > 0 && (
             <>
