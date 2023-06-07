@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
-import type { ColumnsType } from "antd/es/table";
+import type { ColumnsType, TableProps } from "antd/es/table";
 import {
   Card,
   Col,
@@ -16,6 +16,7 @@ import {
 } from "antd";
 import { IPost } from "../models/post";
 import PostForm from "./PostForm";
+import { SorterResult } from "antd/es/table/interface";
 
 const PostsAdmin: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -25,25 +26,40 @@ const PostsAdmin: React.FC = () => {
     title: "",
     body: "",
   });
+  const [sortedInfo, setSortedInfo] = useState<SorterResult<IPost>>({
+    order: "descend",
+    columnKey: "id",
+  });
 
   const { posts, error, isLoading, page, limit, total } = useTypedSelector(
     (state) => state.posts
   );
+  const handleChange: TableProps<IPost>["onChange"] = (sorter) => {
+    console.log("Various parameters", sorter);
+    setSortedInfo(sorter as SorterResult<IPost>);
+    if (sortedInfo.order === "descend") {
+      setSortedInfo({
+        order: "ascend",
+        columnKey: "id",
+      });
+    } else {
+      setSortedInfo({
+        order: "descend",
+        columnKey: "id",
+      });
+    }
+  };
+
   const { isAuth, user } = useTypedSelector((state) => state.auth);
-  //console.log("PostsAdmin", "isAuth =", isAuth, "user =", user);
-  //debugger;
+
   const { fetchPostsUser, setPostsPage, setPosts } = useActions();
 
   useEffect(() => {
     if (isAuth && user.id === undefined) {
-      //debugger;
-      //console.log(posts);
       let id = Number(localStorage.getItem("id"));
       fetchPostsUser(page, limit, id);
     } else {
       let id = user.id;
-      //console.log(posts);
-      //debugger;
       fetchPostsUser(page, limit, id);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -130,6 +146,9 @@ const PostsAdmin: React.FC = () => {
       title: "Id",
       dataIndex: "id",
       key: "id",
+      sorter: (a, b) => a.id - b.id,
+      sortOrder: sortedInfo.columnKey === "id" ? sortedInfo.order : null,
+      sortDirections: ["ascend", "descend"],
     },
     {
       title: "Title",
@@ -154,7 +173,7 @@ const PostsAdmin: React.FC = () => {
 
   const handleEdit = (id: React.Key) => {
     const newData = posts.filter((item) => item.id === id);
-    //console.log(newData);
+
     setNewPost({
       ...newPost,
       userId: newData[0].userId,
@@ -162,11 +181,7 @@ const PostsAdmin: React.FC = () => {
       title: newData[0].title,
       body: newData[0].body,
     });
-    //console.log("newPost", newPost);
-    //console.log(newData[0].title, newData[0].body);
     showModal();
-
-    //setPosts(newData);
   };
 
   const showModal = () => {
@@ -214,6 +229,7 @@ const PostsAdmin: React.FC = () => {
                 columns={columns}
                 rowKey={(record) => record.id}
                 pagination={false}
+                onChange={handleChange}
               />
               <Pagination
                 showSizeChanger={false}
