@@ -186,10 +186,20 @@ const PostsAdmin: React.FC = () => {
     <>
       <Space
         direction="horizontal"
-        style={{ width: "100%", paddingBottom: "24px", paddingInline: "50px" }}
+        style={{
+          width: "100%",
+          minWidth: "100%",
+          paddingBottom: "24px",
+          paddingInline: "50px",
+        }}
         size={[0, 48]}
       >
-        <Row justify="start" align="stretch" gutter={[16, 24]}>
+        <Row
+          justify="center"
+          align="stretch"
+          gutter={[16, 24]}
+          style={{ justifyContent: "stretch" }}
+        >
           <Modal
             title="Edit Post"
             open={open}
@@ -203,7 +213,7 @@ const PostsAdmin: React.FC = () => {
               formHeader="Edit post"
             />
           </Modal>
-          {posts.length > 0 && (
+          {posts.length > 0 ? (
             <>
               <h2
                 style={{
@@ -230,6 +240,16 @@ const PostsAdmin: React.FC = () => {
                 defaultPageSize={limit}
               />
             </>
+          ) : (
+            <h2
+              style={{
+                flexBasis: "100%",
+                textAlign: "center",
+                margin: "20px 0",
+              }}
+            >
+              You haven't any posts!
+            </h2>
           )}
         </Row>
       </Space>
