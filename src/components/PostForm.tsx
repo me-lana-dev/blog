@@ -4,13 +4,10 @@ import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 
 const PostForm = (props: any) => {
-  //console.log(props);
-
   const [form] = Form.useForm();
-  //console.log(form);
-
   const { posts } = useTypedSelector((state) => state.posts);
   const { isAuth, user } = useTypedSelector((state) => state.auth);
+  const { setPosts } = useActions();
 
   useEffect(() => {
     if (isAuth && user.id === undefined) {
@@ -18,8 +15,6 @@ const PostForm = (props: any) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.id]);
-
-  const { setPosts } = useActions();
 
   const [newPost, setNewPost] = useState({
     userId: user.id,
@@ -49,22 +44,14 @@ const PostForm = (props: any) => {
 
   const submit = () => {
     if (props.newPost) {
-      //console.log(newPost);
-      //console.log(props.newPost.id);
-
       const newData = posts.filter((item) => item.id !== props.newPost.id);
-      //console.log("newData after filter", newData);
-
       const editData = [...newData, newPost];
-      //console.log(editData);
       setPosts(editData);
       props.onSubmit();
     } else {
-      setNewPost({ ...newPost, id: Date.now() });
-      const newData = [...posts, newPost];
+      const newData = [...posts, { ...newPost, id: Date.now() }];
       setPosts(newData);
     }
-
     form.setFieldsValue({ title: "", body: "" });
   };
 
@@ -79,7 +66,7 @@ const PostForm = (props: any) => {
           <Card style={{ width: "100%" }}>
             <Form id="editPost" onFinish={submit} form={form}>
               <h2 style={{ textAlign: "center", margin: "0 0 20px 0" }}>
-                Add new Post
+                {props.formHeader}
               </h2>
               <Form.Item
                 label="Title"
@@ -109,7 +96,7 @@ const PostForm = (props: any) => {
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">
-                  Add new post
+                  {props.buttonTxt}
                 </Button>
               </Form.Item>
             </Form>
