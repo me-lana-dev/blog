@@ -22,7 +22,7 @@ const AdminPage: React.FC = () => {
       <h1 style={{ textAlign: "center", margin: "50px" }}>
         Admin {user.username}!
       </h1>
-      <PostForm />
+      <PostForm buttonTxt="Add new post" formHeader="Add new post" />
       <PostsAdmin />
     </>
   );

@@ -196,7 +196,12 @@ const PostsAdmin: React.FC = () => {
             onCancel={handleCancel}
             footer={null}
           >
-            <PostForm newPost={newPost} onSubmit={handleCancel} />
+            <PostForm
+              newPost={newPost}
+              onSubmit={handleCancel}
+              buttonTxt="Edit post"
+              formHeader="Edit post"
+            />
           </Modal>
           {posts.length > 0 && (
             <>
