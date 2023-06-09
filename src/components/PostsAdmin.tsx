@@ -33,12 +33,9 @@ const PostsAdmin: React.FC = () => {
 
   useEffect(() => {
     if (isAuth && user.id === undefined) {
-      let id = Number(localStorage.getItem("id"));
-      fetchPostsUser(page, limit, id);
-    } else {
-      let id = user.id;
-      fetchPostsUser(page, limit, id);
+      user.id = Number(localStorage.getItem("id"));
     }
+    fetchPostsUser(page, limit, user.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, limit, user.id]);
 
