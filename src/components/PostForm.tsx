@@ -47,10 +47,12 @@ const PostForm = (props: any) => {
       const newData = posts.filter((item) => item.id !== props.newPost.id);
       const editData = [...newData, newPost];
       setPosts(editData);
-      props.onSubmit();
     } else {
       const newData = [...posts, { ...newPost, id: Date.now() }];
       setPosts(newData);
+    }
+    if (props.onSubmit) {
+      props.onSubmit();
     }
     form.setFieldsValue({ title: "", body: "" });
   };
