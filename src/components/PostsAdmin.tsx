@@ -25,6 +25,8 @@ const PostsAdmin: React.FC = () => {
   const { isAuth, user } = useTypedSelector((state) => state.auth);
   const { fetchPostsUser, setPostsPage, setPosts } = useActions();
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+
   const [newPost, setNewPost] = useState({});
   const [sortedInfo, setSortedInfo] = useState<SorterResult<IPost>>({
     order: "descend",
@@ -115,6 +117,18 @@ const PostsAdmin: React.FC = () => {
     showModal();
   };
 
+  const handleAddPost = () => {
+    showModal2();
+  };
+
+  const showModal2 = () => {
+    setOpen2(true);
+  };
+
+  const handleCancel2 = () => {
+    setOpen2(false);
+  };
+
   const showModal = () => {
     setOpen(true);
   };
@@ -197,12 +211,14 @@ const PostsAdmin: React.FC = () => {
           gutter={[16, 24]}
           style={{ justifyContent: "stretch" }}
         >
-          <Modal
-            title="Edit Post"
-            open={open}
-            onCancel={handleCancel}
-            footer={null}
-          >
+          <Modal open={open2} onCancel={handleCancel2} footer={null}>
+            <PostForm
+              onSubmit={handleCancel2}
+              buttonTxt="Add new post"
+              formHeader="Add new post"
+            />
+          </Modal>
+          <Modal open={open} onCancel={handleCancel} footer={null}>
             <PostForm
               newPost={newPost}
               onSubmit={handleCancel}
@@ -210,17 +226,24 @@ const PostsAdmin: React.FC = () => {
               formHeader="Edit post"
             />
           </Modal>
+
           {posts.length > 0 ? (
             <>
-              <h2
-                style={{
-                  flexBasis: "100%",
-                  textAlign: "center",
-                  margin: "20px",
-                }}
-              >
-                All my posts
-              </h2>
+              <Space direction="horizontal" size={[0, 48]}>
+                <h2
+                  style={{
+                    flexBasis: "100%",
+                    textAlign: "center",
+                    margin: "20px",
+                  }}
+                >
+                  All my posts
+                </h2>
+                <Button type="primary" onClick={handleAddPost}>
+                  Add new post
+                </Button>
+              </Space>
+
               <Table
                 dataSource={posts}
                 columns={columns}
