@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 import type { ColumnsType, TableProps } from "antd/es/table";
@@ -11,6 +11,7 @@ import {
   Space,
   Spin,
   Table,
+  Input,
   Button,
   Modal,
 } from "antd";
@@ -32,6 +33,8 @@ const PostsAdmin: React.FC = () => {
     order: "descend",
     columnKey: "id",
   });
+  const { Search } = Input;
+  const [searchQuery, setSeaarchQuery] = useState("");
 
   useEffect(() => {
     if (isAuth && user.id === undefined) {
@@ -136,6 +139,12 @@ const PostsAdmin: React.FC = () => {
   const handleCancel = () => {
     setOpen(false);
   };
+
+  const searchedPosts = useMemo(() => {
+    return posts.filter((post) =>
+      post.title.toUpperCase().includes(searchQuery.toUpperCase())
+    );
+  }, [posts, searchQuery]);
 
   if (isLoading) {
     return (
@@ -242,10 +251,17 @@ const PostsAdmin: React.FC = () => {
                 <Button type="primary" onClick={handleAddPost}>
                   Add new post
                 </Button>
+                <Search
+                  style={{ marginLeft: "20px" }}
+                  placeholder="input search"
+                  value={searchQuery}
+                  onChange={(e) => setSeaarchQuery(e.target.value)}
+                  enterButton
+                />
               </Space>
 
               <Table
-                dataSource={posts}
+                dataSource={searchedPosts}
                 columns={columns}
                 rowKey={(record) => record.id}
                 pagination={false}
