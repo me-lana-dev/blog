@@ -11,13 +11,13 @@ import {
   Space,
   Spin,
   Table,
-  Input,
   Button,
   Modal,
 } from "antd";
 import { IPost } from "../models/post";
 import PostForm from "./PostForm";
 import { SorterResult } from "antd/es/table/interface";
+import PostSearch from "./PostSearch";
 
 const PostsAdmin: React.FC = () => {
   const { posts, error, isLoading, page, limit, total } = useTypedSelector(
@@ -27,14 +27,13 @@ const PostsAdmin: React.FC = () => {
   const { fetchPostsUser, setPostsPage, setPosts } = useActions();
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
+  const [filter, setFilter] = useState({ query: "" });
 
   const [newPost, setNewPost] = useState({});
   const [sortedInfo, setSortedInfo] = useState<SorterResult<IPost>>({
     order: "descend",
     columnKey: "id",
   });
-  const { Search } = Input;
-  const [searchQuery, setSeaarchQuery] = useState("");
 
   useEffect(() => {
     if (isAuth && user.id === undefined) {
@@ -142,9 +141,9 @@ const PostsAdmin: React.FC = () => {
 
   const searchedPosts = useMemo(() => {
     return posts.filter((post) =>
-      post.title.toUpperCase().includes(searchQuery.toUpperCase())
+      post.title.toUpperCase().includes(filter.query.toUpperCase())
     );
-  }, [posts, searchQuery]);
+  }, [posts, filter.query]);
 
   if (isLoading) {
     return (
@@ -251,13 +250,7 @@ const PostsAdmin: React.FC = () => {
                 <Button type="primary" onClick={handleAddPost}>
                   Add new post
                 </Button>
-                <Search
-                  style={{ marginLeft: "20px" }}
-                  placeholder="input search"
-                  value={searchQuery}
-                  onChange={(e) => setSeaarchQuery(e.target.value)}
-                  enterButton
-                />
+                <PostSearch filter={filter} setFilter={setFilter} />
               </Space>
 
               <Table
