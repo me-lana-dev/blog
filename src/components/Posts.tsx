@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 import { Card, Col, Pagination, Row, Space, Spin } from "antd";
 import type { PaginationProps } from "antd";
 import { Link } from "react-router-dom";
+import PostSearch from "./PostSearch";
 
 const Posts: React.FC = () => {
   const { Meta } = Card;
@@ -14,10 +15,12 @@ const Posts: React.FC = () => {
   //console.log(posts, error, isLoading, page, limit, total);
 
   const { fetchPosts, setPostsPage, setPostsLimitPages } = useActions();
+  const [filter, setFilter] = useState({ query: "" });
 
   const onChange: PaginationProps["onChange"] = (pageNumber) => {
     setPostsPage(pageNumber);
   };
+
   const onShowSizeChange: PaginationProps["onShowSizeChange"] = (
     current,
     pageSize
@@ -26,6 +29,12 @@ const Posts: React.FC = () => {
     setPostsLimitPages(pageSize);
     //console.log(current, pageSize);
   };
+
+  const searchedPosts = useMemo(() => {
+    return posts.filter((post) =>
+      post.title.toUpperCase().includes(filter.query.toUpperCase())
+    );
+  }, [posts, filter.query]);
 
   useEffect(() => {
     //console.log("fetch posts");
@@ -92,26 +101,40 @@ const Posts: React.FC = () => {
 
   return (
     <>
-      <Pagination
-        className="pagination-top"
-        showSizeChanger
-        onShowSizeChange={onShowSizeChange}
-        pageSizeOptions={[20, 36, 52, 100]}
-        onChange={onChange}
-        defaultCurrent={page}
-        total={total}
-        showTotal={(total, range) =>
-          `${range[0]}-${range[1]} of ${total} items`
-        }
-        defaultPageSize={limit}
-      />
+      <Space
+        direction="vertical"
+        style={{ width: "100%", paddingInline: "50px" }}
+        size={[0, 48]}
+      >
+        <Row gutter={[16, 24]}>
+          <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 18 }}>
+            <PostSearch filter={filter} setFilter={setFilter} />
+          </Col>
+          <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 6 }}>
+            <Pagination
+              className="pagination-top"
+              showSizeChanger
+              onShowSizeChange={onShowSizeChange}
+              pageSizeOptions={[20, 36, 52, 100]}
+              onChange={onChange}
+              defaultCurrent={page}
+              total={total}
+              showTotal={(total, range) =>
+                `${range[0]}-${range[1]} of ${total} items`
+              }
+              defaultPageSize={limit}
+            />
+          </Col>
+        </Row>
+      </Space>
+
       <Space
         direction="horizontal"
         style={{ width: "100%", paddingBottom: "24px", paddingInline: "50px" }}
         size={[0, 48]}
       >
         <Row justify="start" align="stretch" gutter={[16, 24]}>
-          {posts.map((post) => (
+          {searchedPosts.map((post) => (
             <Col span={6} key={post.id}>
               <Card
                 style={{
@@ -141,14 +164,24 @@ const Posts: React.FC = () => {
         </Row>
       </Space>
 
-      <Pagination
-        showSizeChanger={false}
-        hideOnSinglePage={true}
-        onChange={onChange}
-        defaultCurrent={page}
-        total={total}
-        defaultPageSize={limit}
-      />
+      <Space
+        direction="vertical"
+        style={{ width: "100%", paddingInline: "50px" }}
+        size={[0, 48]}
+      >
+        <Row gutter={[16, 24]}>
+          <Col span={24}>
+            <Pagination
+              showSizeChanger={false}
+              hideOnSinglePage={true}
+              onChange={onChange}
+              defaultCurrent={page}
+              total={total}
+              defaultPageSize={limit}
+            />
+          </Col>
+        </Row>
+      </Space>
     </>
   );
 };
