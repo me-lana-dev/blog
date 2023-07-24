@@ -6,7 +6,7 @@ const initialState: PostsState = {
   isLoading: false,
   error: "",
   limit: 20,
-  total: 20,
+  total: 0,
   page: 1,
 };
 
