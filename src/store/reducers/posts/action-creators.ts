@@ -29,17 +29,15 @@ export const PostsActionCreators = {
     payload: payload,
   }),
   fetchPosts:
-    (page = 1, limit = 20) =>
+    (query = "", page = 1, limit = 20) =>
     async (dispatch: AppDispatch) => {
       try {
         dispatch(PostsActionCreators.setIsLoading(true));
-
-        const response = await PostsService.getPosts(page, limit);
+        const response = await PostsService.getPosts(query, page, limit);
         dispatch(PostsActionCreators.setPosts(response.data));
         const xTotalCount = response.headers["x-total-count"];
         dispatch(PostsActionCreators.setPostsTotalPages(xTotalCount));
         dispatch(PostsActionCreators.setIsLoading(false));
-
         //console.log("fetch", "fetch");
       } catch (e) {
         dispatch(

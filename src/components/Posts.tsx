@@ -12,6 +12,7 @@ const Posts: React.FC = () => {
   const { posts, error, isLoading, page, limit, total } = useTypedSelector(
     (state) => state.posts
   );
+  console.log("totol", total);
   //console.log(posts, error, isLoading, page, limit, total);
 
   const { fetchPosts, setPostsPage, setPostsLimitPages } = useActions();
@@ -31,17 +32,27 @@ const Posts: React.FC = () => {
   };
 
   const searchedPosts = useMemo(() => {
-    return posts.filter((post) =>
-      post.title.toUpperCase().includes(filter.query.toUpperCase())
-    );
-  }, [posts, filter.query]);
+    console.log("entered searchedPosts");
+    if (filter.query !== "") {
+      const query = filter.query;
+      console.log("in if searchedPosts");
+      fetchPosts(query, page, limit);
+      return posts;
+
+      // return posts.filter((post) =>
+      //   post.title.toUpperCase().includes(filter.query.toUpperCase())
+      // );
+    }
+    return posts;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter.query]);
 
   useEffect(() => {
     //console.log("fetch posts");
-    fetchPosts(page, limit);
+    fetchPosts(filter.query, page, limit);
     //console.log("render");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, limit]);
+  }, []);
 
   if (isLoading) {
     return (

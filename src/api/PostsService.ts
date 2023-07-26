@@ -3,11 +3,12 @@ import { IPost } from "../models/post";
 
 export default class PostsService {
   static async getPosts(
-    page: number,
-    limit: number
+    query?: string,
+    page?: number,
+    limit?: number
   ): Promise<AxiosResponse<IPost[]>> {
     return axios.get<IPost[]>("https://jsonplaceholder.typicode.com/posts", {
-      params: { _page: page, _limit: limit },
+      params: { title_like: query, _page: page, _limit: limit },
     });
   }
 
