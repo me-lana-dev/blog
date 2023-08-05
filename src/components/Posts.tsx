@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect } from "react";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 import { Card, Col, Pagination, Row, Space, Spin } from "antd";
@@ -12,11 +12,9 @@ const Posts: React.FC = () => {
   const { posts, error, isLoading, page, limit, total } = useTypedSelector(
     (state) => state.posts
   );
-  console.log("totol", total);
-  //console.log(posts, error, isLoading, page, limit, total);
-
-  const { fetchPosts, setPostsPage, setPostsLimitPages } = useActions();
-  const [filter, setFilter] = useState({ query: "" });
+  const { filter } = useTypedSelector((state) => state.filter);
+  const { fetchPosts, setPostsPage, setPostsLimitPages, setFilter } =
+    useActions();
 
   const onChange: PaginationProps["onChange"] = (pageNumber) => {
     setPostsPage(pageNumber);
@@ -28,31 +26,13 @@ const Posts: React.FC = () => {
   ) => {
     setPostsPage(1);
     setPostsLimitPages(pageSize);
-    //console.log(current, pageSize);
   };
 
-  const searchedPosts = useMemo(() => {
-    console.log("entered searchedPosts");
-    if (filter.query !== "") {
-      const query = filter.query;
-      console.log("in if searchedPosts");
-      fetchPosts(query, page, limit);
-      return posts;
-
-      // return posts.filter((post) =>
-      //   post.title.toUpperCase().includes(filter.query.toUpperCase())
-      // );
-    }
-    return posts;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filter.query]);
-
   useEffect(() => {
-    //console.log("fetch posts");
     fetchPosts(filter.query, page, limit);
-    //console.log("render");
+    console.log("useEffect posts.tsx fetch posts");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [filter.query, page, limit]);
 
   if (isLoading) {
     return (
@@ -145,7 +125,7 @@ const Posts: React.FC = () => {
         size={[0, 48]}
       >
         <Row justify="start" align="stretch" gutter={[16, 24]}>
-          {searchedPosts.map((post) => (
+          {posts.map((post) => (
             <Col span={6} key={post.id}>
               <Card
                 style={{

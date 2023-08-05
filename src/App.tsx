@@ -13,6 +13,7 @@ const App = () => {
       } as IUser);
       setIsAuth(true);
     }
+    console.log("useEffect app.tsx setUser setIsAuth");
   }, [setUser, setIsAuth]);
 
   return <AppRouter />;
