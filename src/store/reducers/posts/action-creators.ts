@@ -33,10 +33,13 @@ export const PostsActionCreators = {
     async (dispatch: AppDispatch) => {
       try {
         dispatch(PostsActionCreators.setIsLoading(true));
-        const response = await PostsService.getPosts(query, page, limit);
-        dispatch(PostsActionCreators.setPosts(response.data));
-        const xTotalCount = response.headers["x-total-count"];
-        dispatch(PostsActionCreators.setPostsTotalPages(xTotalCount));
+        setTimeout(async () => {
+          console.log(10);
+          const response = await PostsService.getPosts(query, page, limit);
+          dispatch(PostsActionCreators.setPosts(response.data));
+          const xTotalCount = response.headers["x-total-count"];
+          dispatch(PostsActionCreators.setPostsTotalPages(xTotalCount));
+        }, 5000);
         dispatch(PostsActionCreators.setIsLoading(false));
         //console.log("fetch", "fetch");
       } catch (e) {

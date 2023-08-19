@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { MenuProps, Menu, Divider } from "antd";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { useTypedSelector } from "../hooks/useTypedSelector";
+import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { UserOutlined } from "@ant-design/icons";
-import { useActions } from "../hooks/useActions";
-import { RouteNames } from "../router";
+import { useActions } from "../../../hooks/useActions";
+import { RouteNames } from "../../../router";
 
 const Navbar: React.FC = () => {
   const router = useNavigate();

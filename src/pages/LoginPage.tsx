@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../components/Login/LoginForm";
 import { Card, Layout, Row } from "antd";
 
 const LoginPage: React.FC = () => {

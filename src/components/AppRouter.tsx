@@ -3,13 +3,14 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { privateRoutes, publicRoutes } from "../router";
 import Error from "../pages/ErrorPage";
 import { useTypedSelector } from "../hooks/useTypedSelector";
-import LayoutPage from "./LayoutPage";
+// import LayoutPage from "./LayoutPage";
+import Template from "./Template";
 
 const AppRouter: React.FC = () => {
   const { isAuth } = useTypedSelector((state) => state.auth);
   return isAuth ? (
     <Routes>
-      <Route path="/" element={<LayoutPage />}>
+      <Route path="/" element={<Template />}>
         {privateRoutes.map((route) => (
           <Route
             key={route.path}
@@ -24,7 +25,7 @@ const AppRouter: React.FC = () => {
     </Routes>
   ) : (
     <Routes>
-      <Route path="/" element={<LayoutPage />}>
+      <Route path="/" element={<Template />}>
         {publicRoutes.map((route) => (
           <Route
             key={route.path}
