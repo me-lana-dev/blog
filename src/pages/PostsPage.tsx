@@ -1,4 +1,5 @@
 import React from "react";
+// import PostsOld from "../components/PostsOld";
 import Posts from "../components/Posts";
 
 const PostPage: React.FC = () => {
@@ -6,6 +7,7 @@ const PostPage: React.FC = () => {
     <>
       <h1 style={{ textAlign: "center", margin: "50px" }}>Blog</h1>
       <Posts />
+      {/* <PostsOld /> */}
     </>
   );
 };
