@@ -7,9 +7,6 @@ const PostsPagination: React.FC = () => {
   const { posts, page, limit, total } = useTypedSelector(
     (state) => state.posts
   );
-  console.log("page", page);
-  console.log("limit", limit);
-  console.log("total", total);
   const { setPostsPage, setPostsLimitPages } = useActions();
 
   const onChange: PaginationProps["onChange"] = (pageNumber) => {
@@ -20,14 +17,13 @@ const PostsPagination: React.FC = () => {
     current,
     pageSize
   ) => {
-    setPostsPage(current);
+    setPostsPage(1);
     setPostsLimitPages(pageSize);
   };
 
   useEffect(() => {
     setPostsPage(page);
     setPostsLimitPages(limit);
-    console.log("useEffect PostsPagination.tsx fetch pages");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [posts, page, limit]);
 
@@ -42,13 +38,15 @@ const PostsPagination: React.FC = () => {
           <Col span={24}>
             <Pagination
               showSizeChanger={false}
+              onShowSizeChange={onShowSizeChange}
+              pageSizeOptions={[20, 36, 52, 100]}
               hideOnSinglePage={true}
               onChange={onChange}
               defaultCurrent={page}
               current={page}
               total={total}
+              pageSize={limit}
               defaultPageSize={limit}
-              onShowSizeChange={onShowSizeChange}
             />
           </Col>
         </Row>

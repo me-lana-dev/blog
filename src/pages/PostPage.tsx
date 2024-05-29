@@ -1,6 +1,6 @@
 import React from "react";
-import Post from "../components/Post";
-import Comments from "../components/Comments";
+import Post from "../components/Post/Post";
+import Comments from "../components/Comments/Comments";
 
 const PostPage: React.FC = () => {
   return (

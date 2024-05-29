@@ -13,7 +13,7 @@ const PostsList: React.FC = () => {
 
   useEffect(() => {
     fetchPosts(filter.query, page, limit);
-    console.log("useEffect posts.tsx fetch posts");
+    //console.log("useEffect posts.tsx fetch posts");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter.query, page, limit]);
 
@@ -77,8 +77,9 @@ const PostsList: React.FC = () => {
     <>
       <Space
         direction="horizontal"
-        style={{ width: "100%", paddingBottom: "24px", paddingInline: "50px" }}
+        style={{ width: "100%", paddingBottom: "24px" }}
         size={[0, 48]}
+        className="page-blog"
       >
         <Row justify="start" align="stretch" gutter={[16, 24]}>
           {posts.map((post) => (

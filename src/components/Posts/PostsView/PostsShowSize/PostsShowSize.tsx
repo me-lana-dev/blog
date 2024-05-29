@@ -24,9 +24,11 @@ const PostsShowSize: React.FC = () => {
         showSizeChanger
         onShowSizeChange={onShowSizeChange}
         pageSizeOptions={[20, 36, 52, 100]}
+        hideOnSinglePage={false}
         defaultCurrent={page}
         current={page}
         total={total}
+        pageSize={limit}
         defaultPageSize={limit}
         showTotal={(total, range) =>
           `${range[0]}-${range[1]} of ${total} items`

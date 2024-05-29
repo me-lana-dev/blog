@@ -4,7 +4,7 @@ import { useActions } from "../hooks/useActions";
 import { Card, Col, Pagination, Row, Space, Spin } from "antd";
 import type { PaginationProps } from "antd";
 import { Link } from "react-router-dom";
-import PostSearch from "./PostSearch";
+import PostSearch from "../components/PostSearch/PostSearch";
 
 const Posts: React.FC = () => {
   const { Meta } = Card;

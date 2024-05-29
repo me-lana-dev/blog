@@ -12,7 +12,7 @@ const PostsItem: React.FC<PostsItemProps> = ({ post }) => {
   const { Meta } = Card;
 
   return (
-    <Col span={6}>
+    <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 6 }}>
       <Card
         style={{
           display: "flex",

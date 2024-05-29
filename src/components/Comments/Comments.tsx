@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import { useActions } from "../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useActions } from "../../hooks/useActions";
 import { Card, Col, Row, Space, Spin } from "antd";
 
 const Comments: React.FC = () => {
@@ -76,8 +76,9 @@ const Comments: React.FC = () => {
 
   return (
     <>
-      <h2 style={{ textAlign: "center", margin: "50px" }}>Comments</h2>
-
+      {comments && (
+        <h2 style={{ textAlign: "center", margin: "50px" }}>Comments</h2>
+      )}
       <Space
         direction="horizontal"
         style={{

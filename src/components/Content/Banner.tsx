@@ -5,42 +5,15 @@ import { Link } from "react-router-dom";
 const Banner: React.FC = () => {
   return (
     <div className="main__img">
-      <Space
-        direction="vertical"
-        style={{ width: "100%", paddingInline: 50 }}
-        size={[0, 48]}
-      >
+      <Space direction="vertical" className="banner" size={[0, 20]}>
         <Row>
-          <Col
-            span={24}
-            style={{
-              fontSize: "18px",
-              fontWeight: "300",
-              textTransform: "uppercase",
-              lineHeight: "25px",
-              letterSpacing: "10px",
-              marginBottom: "0px",
-              color: "#303030",
-            }}
-          >
-            A React Pet Progect
+          <Col span={24}>
+            <div className="banner__header">A React Pet Progect</div>
           </Col>
         </Row>
         <Row>
-          <Col
-            span={24}
-            style={{
-              fontFamily: "Josefin Sans, sans-serif",
-              fontSize: "35px",
-              fontWeight: "600",
-              textTransform: "uppercase",
-              lineHeight: "48px",
-              letterSpacing: "28px",
-              marginBottom: "0",
-              color: "#303030",
-            }}
-          >
-            Welcome to Blog
+          <Col span={24}>
+            <div className="banner__msg">Welcome to Blog</div>
           </Col>
         </Row>
         <Row>

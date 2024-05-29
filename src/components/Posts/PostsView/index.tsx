@@ -8,8 +8,9 @@ const index: React.FC = () => {
   return (
     <Space
       direction="vertical"
-      style={{ width: "100%", paddingInline: "50px" }}
+      style={{ width: "100%" }}
       size={[0, 48]}
+      className="page-blog"
     >
       <Row gutter={[16, 24]}>
         <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 18 }}>

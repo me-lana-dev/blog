@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import { useActions } from "../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useActions } from "../../hooks/useActions";
 import { useNavigate, useParams } from "react-router-dom";
 import { Space, Row, Col, Card, Spin } from "antd";
 import { Button } from "antd";
@@ -100,7 +100,9 @@ const Post = () => {
                   Back
                 </Button>
               </Space>
-              <h2>{post.id}.</h2>
+              <h2>
+                {post.id}. {post.title}
+              </h2>
               <p>{post.body}</p>
             </Card>
           </Col>

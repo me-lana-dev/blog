@@ -1,4 +1,3 @@
-// import { IPost } from "../../../models/post";
 import { PostsAction, PostsActionEnum, PostsState } from "./types";
 
 const initialState: PostsState = {
@@ -17,28 +16,17 @@ export default function PostsReducer(
   switch (action.type) {
     case PostsActionEnum.SET_POSTS:
       let posts = { ...state, posts: action.payload };
-      //console.log(posts);
       return posts;
     case PostsActionEnum.SET_IS_LOADING:
-      let p2 = { ...state, isLoading: action.payload };
-      //console.log("p2", p2);
-      return p2;
+      return { ...state, isLoading: action.payload };
     case PostsActionEnum.SET_ERROR:
-      let p3 = { ...state, error: action.payload, isLoading: false };
-      //console.log("p3", p3);
-      return p3;
+      return { ...state, error: action.payload, isLoading: false };
     case PostsActionEnum.SET_POSTS_PAGE:
-      let p4 = { ...state, page: action.payload };
-      //console.log("p4", p4);
-      return p4;
+      return { ...state, page: action.payload };
     case PostsActionEnum.SET_POSTS_TOTAL_PAGES:
-      let p5 = { ...state, total: action.payload };
-      //console.log("p5", p5);
-      return p5;
+      return { ...state, total: action.payload };
     case PostsActionEnum.SET_POSTS_LIMIT_PAGES:
-      let p6 = { ...state, limit: action.payload };
-      //console.log("p5", p5);
-      return p6;
+      return { ...state, limit: action.payload };
     default:
       return state;
   }
