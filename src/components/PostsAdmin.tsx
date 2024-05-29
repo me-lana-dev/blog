@@ -17,7 +17,7 @@ import {
 import { IPost } from "../models/post";
 import PostForm from "./PostForm";
 import { SorterResult } from "antd/es/table/interface";
-import PostSearch from "./PostSearch";
+import PostSearch from "../components/PostSearch/PostSearch";
 
 const PostsAdmin: React.FC = () => {
   const { posts, error, isLoading, page, limit, total } = useTypedSelector(
